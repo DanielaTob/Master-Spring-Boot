@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //Mostrar peticiones del usuario
 @Controller
 @RequestMapping("/app")
@@ -24,10 +27,23 @@ public class IndexController {
 
         usuario.setNombre("Luke");
         usuario.setApellido("SkyWalker");
+        usuario.setEmail("luke@gmail.com");
 
         model.addAttribute("usuario", usuario);
         model.addAttribute("titulo", "Perfil del usuario: ".concat(usuario.getNombre()));
         return "perfil";
+    }
+
+    @GetMapping("/listar")
+    public String listar(Model model){
+
+        List<Usuario> usuarios = new ArrayList<>();
+
+        model.addAttribute("titulo", "Listado de Usuarios ");
+        model.addAttribute("usuarios", usuarios);
+
+
+        return "listar";
     }
 
 }
